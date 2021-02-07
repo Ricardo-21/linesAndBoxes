@@ -1,0 +1,16 @@
+body{
+    background-color:brown;
+    width: 90%; 
+    margin: auto;
+}
+
+h1, p{
+    text-align: center;
+}
+
+#board{
+    width: 60%;
+    height: 500px;
+    margin: auto; 
+    background-color:bisque;
+}
