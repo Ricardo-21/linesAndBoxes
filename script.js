@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let makeLine = (num, height, width, row) => {
         let line = document.createElement("div")
         line.id = num; 
+        line.className = "ImALine"
         line.style.height = height;
         line.style.width = width;
         line.style.backgroundColor = "gray";
