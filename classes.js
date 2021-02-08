@@ -51,101 +51,112 @@ document.addEventListener('DOMContentLoaded', function(){
 
     let currentPlayer = player1;
 
-    line1.line.addEventListener('click', function(){
-        if(line1.isTaken === false){
-            line1.isTaken = true;
-            line1.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    let lines = new Array(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12);
+    lines.forEach(line => {
+        line.line.addEventListener('click', function(){
+            if(line.isTaken === false){
+                line.isTaken = true;
+                line.line.style.backgroundColor = currentPlayer.color;
+                currentPlayer = currentPlayer === player1 ? player2 : player1;
+            }
+        });
+    })
 
-    line2.line.addEventListener('click', function(){
-        if(line2.isTaken === false){
-            line2.isTaken = true;
-            line2.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line1.line.addEventListener('click', function(){
+    //     if(line1.isTaken === false){
+    //         line1.isTaken = true;
+    //         line1.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line3.line.addEventListener('click', function(){
-        if(line3.isTaken === false){
-            line3.isTaken = true;
-            line3.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line2.line.addEventListener('click', function(){
+    //     if(line2.isTaken === false){
+    //         line2.isTaken = true;
+    //         line2.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line4.line.addEventListener('click', function(){
-        if(line4.isTaken === false){
-            line4.isTaken = true;
-            line4.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line3.line.addEventListener('click', function(){
+    //     if(line3.isTaken === false){
+    //         line3.isTaken = true;
+    //         line3.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line5.line.addEventListener('click', function(){
-        if(line5.isTaken === false){
-            line5.isTaken = true;
-            line5.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line4.line.addEventListener('click', function(){
+    //     if(line4.isTaken === false){
+    //         line4.isTaken = true;
+    //         line4.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line6.line.addEventListener('click', function(){
-        if(line6.isTaken === false){
-            line6.isTaken = true;
-            line6.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line5.line.addEventListener('click', function(){
+    //     if(line5.isTaken === false){
+    //         line5.isTaken = true;
+    //         line5.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line7.line.addEventListener('click', function(){
-        if(line7.isTaken === false){
-            line7.isTaken = true;
-            line7.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line6.line.addEventListener('click', function(){
+    //     if(line6.isTaken === false){
+    //         line6.isTaken = true;
+    //         line6.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line8.line.addEventListener('click', function(){
-        if(line8.isTaken === false){
-            line8.isTaken = true;
-            line8.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line7.line.addEventListener('click', function(){
+    //     if(line7.isTaken === false){
+    //         line7.isTaken = true;
+    //         line7.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line9.line.addEventListener('click', function(){
-        if(line9.isTaken === false){
-            line9.isTaken = true;
-            line9.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line8.line.addEventListener('click', function(){
+    //     if(line8.isTaken === false){
+    //         line8.isTaken = true;
+    //         line8.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line10.line.addEventListener('click', function(){
-        if(line10.isTaken === false){
-            line10.isTaken = true;
-            line10.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line9.line.addEventListener('click', function(){
+    //     if(line9.isTaken === false){
+    //         line9.isTaken = true;
+    //         line9.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line11.line.addEventListener('click', function(){
-        if(line11.isTaken === false){
-            line11.isTaken = true;
-            line11.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line10.line.addEventListener('click', function(){
+    //     if(line10.isTaken === false){
+    //         line10.isTaken = true;
+    //         line10.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
-    line12.line.addEventListener('click', function(){
-        if(line12.isTaken === false){
-            line12.isTaken = true;
-            line12.line.style.backgroundColor = currentPlayer.color;
-            currentPlayer = currentPlayer === player1 ? player2 : player1;
-        }
-    });
+    // line11.line.addEventListener('click', function(){
+    //     if(line11.isTaken === false){
+    //         line11.isTaken = true;
+    //         line11.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
+
+    // line12.line.addEventListener('click', function(){
+    //     if(line12.isTaken === false){
+    //         line12.isTaken = true;
+    //         line12.line.style.backgroundColor = currentPlayer.color;
+    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
+    //     }
+    // });
 
 
     
