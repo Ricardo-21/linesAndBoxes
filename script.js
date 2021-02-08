@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     let board = document.getElementById("board");
-    let makeLine = (num, height, width, row) => {
+    let makeLine = (num, height, width) => {
         let line = document.createElement("div")
         line.id = num; 
         line.style.height = height;
@@ -24,8 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 rowCount ++;
                 isHorizontal = false; 
                 counter = 0;
-                row.append(line)
-               // board.append(document.createElement("br"));
             }
         }
         else{
@@ -34,15 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
             line.style.marginLeft = '10px'
             row.append(line);
             counter++
-            board.append(row)
             if(counter === 3){
                 rowCount ++;
                 isHorizontal = true;
                 counter = 0; 
-                row.append(line)
-               // board.append(document.createElement("br"));
             }
         }
     }
     
-});
+})
