@@ -6,20 +6,22 @@ document.addEventListener("DOMContentLoaded", () => {
         line.style.height = height;
         line.style.width = width;
         line.style.backgroundColor = "gray";
-        line.style.float = "left";
-        line.style.margin = "20px";
-      //  row.append(line);
+        line.style.margin = '5px';
+        line.style.float = 'left';
+        // board.append(line);
+        return line;
     }
     let isHorizontal = true; 
     let counter = 0; 
-    for(let i = 0; i < 13; i++){
+    let rowCount = 1;
+    for(let i = 0; i < 12; i++){
         if(isHorizontal){
-            let row = document.createElement("div")
-            makeLine(`${i}`, "50px", "200px", row)
-           // line.style.float = "left"
-           board.append(row)
+            let row = document.getElementById(`row${rowCount}`);
+            let line = makeLine(`${i}`, "10px", "190px");
+            row.append(line);
             counter++
             if(counter === 2){
+                rowCount ++;
                 isHorizontal = false; 
                 counter = 0;
                 row.append(line)
@@ -27,11 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         else{
-            let row = document.createElement("div")
-            makeLine(`${i}`, "200px", "50px",row)
+            let row = document.getElementById(`row${rowCount}`)
+            let line = makeLine(`${i}`, "140px", "10px")
+            line.style.marginLeft = '10px'
+            row.append(line);
             counter++
             board.append(row)
             if(counter === 3){
+                rowCount ++;
                 isHorizontal = true;
                 counter = 0; 
                 row.append(line)
@@ -40,4 +45,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-})
+});

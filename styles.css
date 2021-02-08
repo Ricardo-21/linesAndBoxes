@@ -7,6 +7,21 @@ body{
 h1, p{
     text-align: center;
 }
+.row {
+    display: flex;
+    background-color: blue;
+    width: 60%;
+    height: 60px;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+.h{
+display: flex;
+justify-content: space-evenly;
+}
 
 #board{
     width: 60%;
