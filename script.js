@@ -6,23 +6,33 @@ document.addEventListener("DOMContentLoaded", () => {
         line.style.height = height;
         line.style.width = width;
         line.style.backgroundColor = "gray";
-        board.append(line);
+        line.style.margin = '5px';
+        line.style.float = 'left';
+        // board.append(line);
+        return line;
     }
     let isHorizontal = true; 
     let counter = 0; 
-    for(let i = 0; i < 13; i++){
+    let rowCount = 1;
+    for(let i = 0; i < 12; i++){
         if(isHorizontal){
-            makeLine(`${i}`, "10px", "50px")
+            let row = document.getElementById(`row${rowCount}`);
+            let line = makeLine(`${i}`, "10px", "50px");
+            row.append(line);
             counter++
             if(counter === 2){
+                rowCount ++;
                 isHorizontal = false; 
                 counter = 0;
             }
         }
         else{
-            makeLine(`${i}`, "50px", "10px")
+            let row = document.getElementById(`row${rowCount}`)
+            let line = makeLine(`${i}`, "50px", "10px")
+            row.append(line);
             counter++
             if(counter === 3){
+                rowCount ++;
                 isHorizontal = true;
                 counter = 0; 
             }
