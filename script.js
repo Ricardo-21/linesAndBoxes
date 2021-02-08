@@ -32,6 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
             let line = makeLine(`${i}`, "140px", "10px")
             line.style.marginLeft = '10px'
             row.append(line);
+            if(counter !== 2){
+                let div = makeLine(`${i + 100}`, "100px", "190px")
+                row.append(div);
+            }
             counter++
             if(counter === 3){
                 rowCount ++;
