@@ -8,19 +8,26 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     class Box {
-        constructor(top, bottom, left, right){
+        constructor(top, bottom, left, right, div){
             this.top = top;
             this.bottom = bottom;
             this.left = left;
             this.right = right;
+            this.isTaken = false;
+            this.div = document.getElementById(`${div}`);
 
             this.color = null;
         }
 
         checkCompleteBox(){
-            if(this.top.isTaken === true && this.bottom.isTaken === true && this.left.isTaken === true && this.right.isTaken === true){
+            if(this.top.isTaken && this.bottom.isTaken && this.left.isTaken && this.right.isTaken && !this.isTaken){
                 this.color = currentPlayer.color;
+                currentPlayer.points += 1;
+                currentPlayer.updatePoints();
+                this.isTaken = true;
+                this.div.style.backgroundColor = `${this.color}`;
             }
+            console.log(this.color);
         }
     }
 
@@ -28,10 +35,15 @@ document.addEventListener('DOMContentLoaded', function(){
         constructor(name, color){
             this.name = name;
             this.color = color;
+            this.points = 0;
+        }
+
+        updatePoints(){
+            let span = currentPlayer === player1 ? document.getElementById('Player1').firstElementChild : document.getElementById('Player2').firstElementChild;
+            span.innerText = `${this.points}`;
         }
     }
 
-    line1El = document.getElementById('0');
 
     const line1 = new Line(0);
     const line2 = new Line(1);
@@ -51,112 +63,29 @@ document.addEventListener('DOMContentLoaded', function(){
 
     let currentPlayer = player1;
 
+    const box1 = new Box(line1, line6, line3, line4, 102);
+    const box2 = new Box(line2, line7, line4, line5, 103);
+    const box3 = new Box(line6, line11, line8, line9, 107);
+    const box4 = new Box(line7, line12, line9, line10, 108);
+
+    const boxes = new Array(box1, box2, box3, box4);
+
+
     let lines = new Array(line1,line2,line3,line4,line5,line6,line7,line8,line9,line10,line11,line12);
     lines.forEach(line => {
         line.line.addEventListener('click', function(){
             if(line.isTaken === false){
                 line.isTaken = true;
                 line.line.style.backgroundColor = currentPlayer.color;
+                boxes.forEach(box => box.checkCompleteBox());
                 currentPlayer = currentPlayer === player1 ? player2 : player1;
             }
         });
     })
 
-    // line1.line.addEventListener('click', function(){
-    //     if(line1.isTaken === false){
-    //         line1.isTaken = true;
-    //         line1.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
 
-    // line2.line.addEventListener('click', function(){
-    //     if(line2.isTaken === false){
-    //         line2.isTaken = true;
-    //         line2.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
 
-    // line3.line.addEventListener('click', function(){
-    //     if(line3.isTaken === false){
-    //         line3.isTaken = true;
-    //         line3.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
 
-    // line4.line.addEventListener('click', function(){
-    //     if(line4.isTaken === false){
-    //         line4.isTaken = true;
-    //         line4.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
-
-    // line5.line.addEventListener('click', function(){
-    //     if(line5.isTaken === false){
-    //         line5.isTaken = true;
-    //         line5.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
-
-    // line6.line.addEventListener('click', function(){
-    //     if(line6.isTaken === false){
-    //         line6.isTaken = true;
-    //         line6.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
-
-    // line7.line.addEventListener('click', function(){
-    //     if(line7.isTaken === false){
-    //         line7.isTaken = true;
-    //         line7.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
-
-    // line8.line.addEventListener('click', function(){
-    //     if(line8.isTaken === false){
-    //         line8.isTaken = true;
-    //         line8.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
-
-    // line9.line.addEventListener('click', function(){
-    //     if(line9.isTaken === false){
-    //         line9.isTaken = true;
-    //         line9.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
-
-    // line10.line.addEventListener('click', function(){
-    //     if(line10.isTaken === false){
-    //         line10.isTaken = true;
-    //         line10.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
-
-    // line11.line.addEventListener('click', function(){
-    //     if(line11.isTaken === false){
-    //         line11.isTaken = true;
-    //         line11.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
-
-    // line12.line.addEventListener('click', function(){
-    //     if(line12.isTaken === false){
-    //         line12.isTaken = true;
-    //         line12.line.style.backgroundColor = currentPlayer.color;
-    //         currentPlayer = currentPlayer === player1 ? player2 : player1;
-    //     }
-    // });
 
 
     
