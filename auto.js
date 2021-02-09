@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         for(let i = 0; i < num; i++){
             let row = document.createElement('div');
             row.id = `row${i}`;
-            row.class = row
+            row.classList = "row"
             board.append(row);
             console.log(i)
         }
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     for(let i = 0; i < numOfLines; i++){
         if(isHorizontal){
             let row = document.getElementById(`row${rowCount}`);
-            let line = makeLine(`${i}`, `20px`, `${width}px`);
+            let line = makeLine(`${i}`, `30px`, `${width}px`);
             row.append(line);
             counter++
             if(counter === num){
@@ -62,9 +62,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
         else{
             let row = document.getElementById(`row${rowCount}`)
-            let line = makeLine(`${i}`, `${width}px`, `20px`)
+            let line = makeLine(`${i}`, `${width}px`, `30px`)
             line.style.marginLeft = '10px'
             row.append(line);
+            row.className.add = "h";
             if(counter !== num){
                 let div = makeLine(`divCount${divCount}`, `${width}px`, `${width}px`)
                 row.append(div);

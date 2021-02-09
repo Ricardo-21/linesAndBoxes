@@ -10,7 +10,7 @@ h1, p{
 }
 .row {
     display: flex;
-    width: 100%;
+    width: 80%;
     height: auto;
     padding: 10px;
     margin: auto;
@@ -18,13 +18,14 @@ h1, p{
     align-items: center;
     justify-content: space-between;
 }
+
 .h{
 display: flex;
 justify-content: space-evenly;
 }
 
 #board{
-    width: 80%;
+    width: 60%;
     height: 500px;
     margin: auto; 
     background-color:#E3D8F1;
