@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for(let i = 0; i < 12; i++){
         if(isHorizontal){
             let row = document.getElementById(`row${rowCount}`);
-            let line = makeLine(`${i}`, "10px", "190px");
+            let line = makeLine(`${i}`, "18px", "150px");
             row.append(line);
             counter++
             if(counter === 2){
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else{
             let row = document.getElementById(`row${rowCount}`)
-            let line = makeLine(`${i}`, "140px", "10px")
+            let line = makeLine(`${i}`, "120px", "18px")
             line.style.marginLeft = '10px'
             row.append(line);
             if(counter !== 2){
-                let div = makeLine(`${i + 100}`, "100px", "190px")
+                let div = makeLine(`${i + 100}`, "120px", "150px")
                 row.append(div);
             }
             counter++
@@ -43,6 +43,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 counter = 0; 
             }
         }
-    }
-    
+    } 
 })

@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const line11 = new Line(10);
     const line12 = new Line(11);
 
-    let player1 = new Player('ricardo', 'pink');
-    let player2 = new Player('groot', 'orange');
+    let player1 = new Player('ricardo', '#3F8EFC');
+    let player2 = new Player('groot', '#C04ABC');
 
     let currentPlayer = player1;
 

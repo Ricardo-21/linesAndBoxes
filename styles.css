@@ -1,15 +1,15 @@
 body{
-    background-color:brown;
+    background-color: #2D3047;
     width: 90%; 
     margin: auto;
 }
 
 h1, p{
+    color: #C5E6A6;
     text-align: center;
 }
 .row {
     display: flex;
-    background-color: blue;
     width: 60%;
     height: 60px;
     padding: 10px;
@@ -24,8 +24,8 @@ justify-content: space-evenly;
 }
 
 #board{
-    width: 60%;
-    height: 500px;
+    width: 50%;
+    height: 400px;
     margin: auto; 
-    background-color:bisque;
+    background-color:#E3D8F1;
 }
