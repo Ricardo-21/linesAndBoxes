@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         let rowCount = 0;
         let divCount = 0;
         let numOfLines = ((num + num +1) * otherNum) + num;
-        let width =  (board.offsetWidth /num) - 35;
+        let width =  (board.offsetWidth /num) - 30;
 
         makeRow(numberOfRows);
         console.log(numberOfRows)
