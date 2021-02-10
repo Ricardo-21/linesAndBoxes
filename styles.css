@@ -1,3 +1,10 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 body{
     background-color: #2D3047;
     width: 90%; 
@@ -8,11 +15,16 @@ h1, p{
     color: #C5E6A6;
     text-align: center;
 }
+
+#welcome{
+    color: #2D3047;
+}
+
 .row {
     display: flex;
     width: 80%;
     height: auto;
-    padding: 10px;
+    /* padding: 10px; */
     margin: auto;
     text-align: center;
     align-items: center;
@@ -22,11 +34,12 @@ h1, p{
 .h{
 display: flex;
 justify-content: space-evenly;
+height: 50px
 }
 
 #board{
     width: 60%;
-    height: 500px;
+    height: auto;
     margin: auto; 
     background-color:#E3D8F1;
 }
