@@ -28,9 +28,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 currentPlayer.points += 1;
                 currentPlayer.updatePoints();
                 this.isTaken = true;
+                console.log(currentPlayer)
                 this.div.style.backgroundColor = `${this.color}`;
+                currentPlayer = currentPlayer === player1 ? player2 : player1;
             }
-            console.log(this.color);
         }
     }
 
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         updatePoints(){
             let span = currentPlayer === player1 ? document.getElementById('Player1').firstElementChild : document.getElementById('Player2').firstElementChild;
-            span.innerText = `${this.points}`;
+            span.innerText = ` ${this.points}`;
         }
     }
 
@@ -92,6 +93,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
     
     function makeBoard(num, otherNum){
+        const plyr1 = document.getElementById('Player1');
+        plyr1.style.border = `5px solid ${player1.color}`
+        const plyr2 = document.getElementById('Player2');
         let isHorizontal = true; 
         let counter = 0; 
         let numberOfRows = (otherNum * 2) + 1;
@@ -159,7 +163,45 @@ document.addEventListener("DOMContentLoaded", ()=>{
             boxCount ++;
         }
 
-        console.log(boxes)
+
+        lines.forEach(line => {
+            line.line.addEventListener('click', function(){
+                if(line.isTaken === false){
+                    line.isTaken = true;
+                    line.line.style.backgroundColor = currentPlayer.color;
+                    boxes.forEach(box => box.checkCompleteBox());
+                    currentPlayer = currentPlayer === player1 ? player2 : player1;
+                    if(currentPlayer === player1){
+                        plyr1.style.border = `5px solid ${player1.color}`
+                        plyr2.style.border = `5px solid #2D3047`
+                    }
+                    else{
+                        plyr2.style.border = `5px solid ${player2.color}`
+                        plyr1.style.border = `5px solid #2D3047`
+                    }
+                }
+
+                let boardCheck = boxes.every(box => box.isTaken)
+                if(boardCheck){
+                    if(player1.points > player2.points){
+                        console.log('player 1 won');
+                    }
+                    else if(player2.points > player1.points){
+                        console.log('player 2 won');
+                    }
+                    else{
+                        console.log('draw');
+                    }
+                }
+            });
+        })
+
+
     }
 
+
+    let player1 = new Player('ricardo', '#3F8EFC');
+    let player2 = new Player('groot', '#C04ABC');
+
+    let currentPlayer = player1;
 })

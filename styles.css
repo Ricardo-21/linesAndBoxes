@@ -6,14 +6,20 @@ form {
 }
 
 body{
+    display: flex;
     background-color: #2D3047;
     width: 90%; 
     margin: auto;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 h1, p{
+    display: flex;
     color: #C5E6A6;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 #welcome{
@@ -38,7 +44,7 @@ height: 50px
 }
 
 #board{
-    width: 60%;
+    width: 80%;
     height: auto;
     margin: auto; 
     background-color:#E3D8F1;
