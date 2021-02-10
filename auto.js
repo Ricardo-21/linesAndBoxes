@@ -2,6 +2,61 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let form = document.querySelector("form");
     let board = document.getElementById("board");
 
+    class Line {
+        constructor(num){
+            this.line = document.getElementById(`${num}`);
+            this.isTaken = false;
+            this.takenBy = null;
+        }
+    }
+
+    class Box {
+        constructor(top, bottom, left, right, div){
+            this.top = top;
+            this.bottom = bottom;
+            this.left = left;
+            this.right = right;
+            this.isTaken = false;
+            this.div = document.getElementById(`divCount${div}`);
+
+            this.color = null;
+        }
+
+        checkCompleteBox(){
+            if(this.top.isTaken && this.bottom.isTaken && this.left.isTaken && this.right.isTaken && !this.isTaken){
+                this.color = currentPlayer.color;
+                currentPlayer.points += 1;
+                currentPlayer.updatePoints();
+                this.isTaken = true;
+                this.div.style.backgroundColor = `${this.color}`;
+            }
+            console.log(this.color);
+        }
+    }
+
+    class Player {
+        constructor(name, color){
+            this.name = name;
+            this.color = color;
+            this.points = 0;
+        }
+
+        updatePoints(){
+            let span = currentPlayer === player1 ? document.getElementById('Player1').firstElementChild : document.getElementById('Player2').firstElementChild;
+            span.innerText = `${this.points}`;
+        }
+    }
+
+
+
+    const lines = [];
+    const boxes = [];
+
+
+
+
+
+
     let makeLine = (num, height, width) => {
         let line = document.createElement("div")
         line.id = num; 
@@ -43,42 +98,68 @@ document.addEventListener("DOMContentLoaded", ()=>{
         let rowCount = 0;
         let divCount = 0;
         let numOfLines = ((num + num +1) * otherNum) + num;
-        let width =  (board.offsetWidth /num) - 30;
+        // let width =  (board.offsetWidth /num) - 35;
+        let width = 120;
+
+        if(num < 3){
+            width = 200;
+        }
+
 
         makeRow(numberOfRows);
         console.log(numberOfRows)
 
-    for(let i = 0; i < numOfLines; i++){
-        if(isHorizontal){
-            let row = document.getElementById(`row${rowCount}`);
-            let line = makeLine(`${i}`, `30px`, `${width}px`);
-            row.append(line);
-            counter++
-            if(counter === num){
-                rowCount ++;
-                isHorizontal = false; 
-                counter = 0;
+        for(let i = 0; i < numOfLines; i++){
+            if(isHorizontal){
+                let row = document.getElementById(`row${rowCount}`);
+                let line = makeLine(`${i}`, `30px`, `${width}px`);
+                row.append(line);
+                lines.push(new Line(i));
+                row.classList.add('h');
+                counter++
+                if(counter === num){
+                    rowCount ++;
+                    isHorizontal = false; 
+                    counter = 0;
+                }
             }
+            else{
+                let row = document.getElementById(`row${rowCount}`)
+                let line = makeLine(`${i}`, `100px`, `30px`)
+                // line.style.marginLeft = '10px'
+                row.append(line);
+                lines.push(new Line(i));
+                if(counter !== num){
+                    let div = makeLine(`divCount${divCount}`, `100px`, `${width}px`)
+                    row.append(div);
+                    divCount++
+                }
+                counter++
+                if(counter === num + 1){
+                    rowCount ++;
+                    isHorizontal = true;
+                    counter = 0; 
+                }
+            }
+        } 
+        
+        boxCount = 0;
+        colCount = 1;
+        for(let i = 0; i < lines.length - num; i++) { //makes box instances
+            let top = lines[i];
+            let left = lines[i + num];
+            let right = lines[i + num + 1]; 
+            let bottom = lines[i + num + 1 + num];
+            boxes.push(new Box(top, bottom, left, right, boxCount));
+            if(colCount === num){
+                i += num + 1;
+                colCount = 0;
+            }
+            colCount ++;
+            boxCount ++;
         }
-        else{
-            let row = document.getElementById(`row${rowCount}`)
-            let line = makeLine(`${i}`, `${width}px`, `30px`)
-            line.style.marginLeft = '10px'
-            row.append(line);
-            row.className.add = "h";
-            if(counter !== num){
-                let div = makeLine(`divCount${divCount}`, `${width}px`, `${width}px`)
-                row.append(div);
-                divCount++
-            }
-            counter++
-            if(counter === num + 1){
-                rowCount ++;
-                isHorizontal = true;
-                counter = 0; 
-            }
-        }
-    } 
 
+        console.log(boxes)
     }
+
 })
