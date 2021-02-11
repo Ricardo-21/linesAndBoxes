@@ -33,6 +33,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 currentPlayer = currentPlayer === player1 ? player2 : player1;
             }
         }
+
+        // check if one is needed to complete 
+            //true or false
     }
 
     class Player {
@@ -74,10 +77,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
     form.addEventListener("submit", (e) => {
         let num = document.getElementById("num").value;
         let oNum = document.getElementById("oNum").value;
+        let isPlayer = document.getElementById('Player').checked;
         let n = parseInt(num);
         let oN = parseInt(oNum);
         e.preventDefault();
-        makeBoard(n,oN);
+        makeBoard(n,oN, isPlayer);
         console.log("The submit has been pressed")
     })
 
@@ -92,10 +96,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     }
     
-    function makeBoard(num, otherNum){
+    function makeBoard(num, otherNum, isPlayer){
         const plyr1 = document.getElementById('Player1');
         plyr1.style.border = `5px solid ${player1.color}`
         const plyr2 = document.getElementById('Player2');
+        let isPl = isPlayer;
         let isHorizontal = true; 
         let counter = 0; 
         let numberOfRows = (otherNum * 2) + 1;
@@ -164,8 +169,28 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
 
 
+        function randomInd() {
+            return Math.floor(Math.random() * lines.length)
+        }
+        let randomLine = lines[randomInd()];
+
         lines.forEach(line => {
+
+
             line.line.addEventListener('click', function(){
+
+                if(currentPlayer == player1 && !isPl){
+                    while(randomLine.isTaken){
+                        randomLine = lines[randomInd()];
+                    }
+                }
+
+
+                if(currentPlayer === player2 && !isPl) {
+                    randomLine.line.click();
+                    console.log('Im trying to click', randomLine)
+                }
+
                 if(line.isTaken === false){
                     line.isTaken = true;
                     line.line.style.backgroundColor = currentPlayer.color;
@@ -181,6 +206,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                     }
                 }
 
+
                 let boardCheck = boxes.every(box => box.isTaken)
                 if(boardCheck){
                     if(player1.points > player2.points){
@@ -193,6 +219,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                         console.log('draw');
                     }
                 }
+
             });
         })
 
