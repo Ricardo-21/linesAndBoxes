@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", ()=>{
     let form = document.querySelector("form");
     let board = document.getElementById("board");
+    let pl1Won = document.createElement('h1');
+    pl1Won.id = 'welcome';
+    let pl2Won = document.createElement('h1');
+    pl2Won.id = 'welcome';
 
     class Line {
         constructor(num){
@@ -30,7 +34,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 this.isTaken = true;
                 console.log(currentPlayer)
                 this.div.style.backgroundColor = `${this.color}`;
-                currentPlayer = currentPlayer === player1 ? player2 : player1;
+                currentBoxComp += 1;
+                // currentPlayer = currentPlayer === player1 ? player2 : player1;
             }
         }
 
@@ -95,10 +100,33 @@ document.addEventListener("DOMContentLoaded", ()=>{
             console.log(i)
         }
     }
+
+    function WinnerWinner(player){
+        let pTag = document.createElement('p');
+        pTag.id = 'welcome';
+        pTag.innerText = "Press the 'Lines and Boxes' title to start over"
+        while (board.firstChild) {
+            board.removeChild(board.firstChild);
+        }
+
+
+        if(player === player1){
+            pl1Won.innerText = "Player 1 Has Won!!!"
+            board.append(pl1Won, pTag);
+        }
+        else if(player === player2){
+            pl2Won.innerText = "Player 2 Has Won!!!"
+            board.append(pl2Won, pTag);
+        }
+        else{
+            pl1Won.innerText = "It's A Draw!!"
+            board.append(pl1Won, pTag);
+        }
+    }
     
     function makeBoard(num, otherNum, isPlayer){
         const plyr1 = document.getElementById('Player1');
-        plyr1.style.border = `5px solid ${player1.color}`
+        // plyr1.style.border = `5px solid ${player1.color}`
         const plyr2 = document.getElementById('Player2');
         let isPl = isPlayer;
         let isHorizontal = true; 
@@ -168,42 +196,34 @@ document.addEventListener("DOMContentLoaded", ()=>{
             boxCount ++;
         }
 
+        
 
         function randomInd() {
             return Math.floor(Math.random() * lines.length)
         }
+
+
+
         let randomLine = lines[randomInd()];
+
+
+
+        plyr1.style.border = `5px solid ${player1.color}`
 
         lines.forEach(line => {
 
 
             line.line.addEventListener('click', function(){
-
-                if(currentPlayer == player1 && !isPl){
-                    while(randomLine.isTaken){
-                        randomLine = lines[randomInd()];
-                    }
-                }
-
-
-                if(currentPlayer === player2 && !isPl) {
-                    randomLine.line.click();
-                    console.log('Im trying to click', randomLine)
-                }
+            
 
                 if(line.isTaken === false){
                     line.isTaken = true;
                     line.line.style.backgroundColor = currentPlayer.color;
-                    boxes.forEach(box => box.checkCompleteBox());
-                    currentPlayer = currentPlayer === player1 ? player2 : player1;
-                    if(currentPlayer === player1){
-                        plyr1.style.border = `5px solid ${player1.color}`
-                        plyr2.style.border = `5px solid #2D3047`
-                    }
-                    else{
-                        plyr2.style.border = `5px solid ${player2.color}`
-                        plyr1.style.border = `5px solid #2D3047`
-                    }
+                    boxes.forEach(box => {
+                        box.checkCompleteBox();
+                        console.log(currentBoxComp);
+                        
+                    });
                 }
 
 
@@ -211,15 +231,54 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 if(boardCheck){
                     if(player1.points > player2.points){
                         console.log('player 1 won');
+                        WinnerWinner(player1)
                     }
                     else if(player2.points > player1.points){
                         console.log('player 2 won');
+                        WinnerWinner(player2)
                     }
                     else{
                         console.log('draw');
+                        WinnerWinner();
                     }
                 }
 
+
+
+
+
+                // console.log(completeBoxes, currentBoxComp);
+                if(completeBoxes === currentBoxComp){
+                        currentPlayer = currentPlayer === player1 ? player2 : player1;
+                }
+                else {
+                    completeBoxes = currentBoxComp;
+                }
+
+                if(currentPlayer === player2 && isPl){
+                    plyr2.style.border = `5px solid ${player2.color}`
+                    plyr1.style.border = `5px solid #2D3047`
+                }
+                else{
+                    plyr1.style.border = `5px solid ${player1.color}`
+                    plyr2.style.border = `5px solid #2D3047`
+                }
+
+
+
+                while(randomLine.isTaken){
+                    randomLine = lines[randomInd()];
+                    if(boardCheck){
+                        break;
+                    }
+                }
+
+                if(currentPlayer == player2 && !isPl){
+                    
+                    randomLine.line.click();
+                    console.log('p2 went')
+                }
+                
             });
         })
 
@@ -229,6 +288,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     let player1 = new Player('ricardo', '#3F8EFC');
     let player2 = new Player('groot', '#C04ABC');
+    let completeBoxes = 0;
+    let currentBoxComp = 0;
 
     let currentPlayer = player1;
 })
