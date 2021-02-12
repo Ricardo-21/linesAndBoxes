@@ -187,7 +187,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
                 if(currentPlayer === player2 && !isPl) {
-                    randomLine.line.click();
+                    // setTimeout(() => {
+                        randomLine.line.click();
+                    // }, 1000)
                     console.log('Im trying to click', randomLine)
                 }
 
