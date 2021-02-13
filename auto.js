@@ -75,6 +75,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
         line.style.backgroundColor = "gray";
         line.style.margin = '5px';
         line.style.float = 'left';
+        line.style.border = '1px solid gray';
+        line.style.borderRadius = '5px';
         // board.append(line);
         return line;
     }
